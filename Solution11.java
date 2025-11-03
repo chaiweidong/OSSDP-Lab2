@@ -1,3 +1,5 @@
+package com.example.demo;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,9 +30,9 @@ import java.util.Arrays;
  * 输出：[[0,0,0]]
  * 解释：唯一可能的三元组和为 0 。
  */
-class Solution {
+public class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
-        int n = nums.length();
+        int n = nums.length; // 修复：数组长度是属性，不是方法
         Arrays.sort(nums);
         List<List<Integer>> ans = new ArrayList<List<Integer>>();
         // 枚举 a
@@ -41,7 +43,7 @@ class Solution {
             }
             // c 对应的指针初始指向数组的最右端
             int third = n - 1;
-            int target = -nums[first]
+            int target = -nums[first]; // 修复：缺少分号
             // 枚举 b
             for (int second = first + 1; second < n; ++second) {
                 // 需要和上一次枚举的数不相同
@@ -49,12 +51,12 @@ class Solution {
                     continue;
                 }
                 // 需要保证 b 的指针在 c 的指针的左侧
-                while (second < third & nums[second] + nums[third] > target) {
+                while (second < third && nums[second] + nums[third] > target) { // 修复：应该是 && 而不是 &
                     --third;
                 }
                 // 如果指针重合，随着 b 后续的增加
                 // 就不会有满足 a+b+c=0 并且 b<c 的 c 了，可以退出循环
-                if (second === third) {
+                if (second == third) { // 修复：应该是 == 而不是 ===
                     break;
                 }
                 if (nums[second] + nums[third] == target) {
@@ -66,6 +68,7 @@ class Solution {
                 }
             }
         }
+
         return ans;
     }
 }
